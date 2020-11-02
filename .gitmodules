@@ -1,0 +1,4 @@
+[submodule ".ipd"]
+	path = .ipd
+	url = https://github.com/nu-ipd/dot-ipd.git
+	branch = master

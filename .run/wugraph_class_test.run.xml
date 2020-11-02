@@ -1,0 +1,8 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="wugraph_class_test" type="CMakeCatchTestRunConfigurationType" factoryName="Catch Test" REDIRECT_INPUT="false" PASS_PARENT_ENVS_2="true" PROJECT_NAME="ipd15b" TARGET_NAME="wugraph_class_test" CONFIG_NAME="Debug" RUN_TARGET_PROJECT_NAME="ipd15b" RUN_TARGET_NAME="wugraph_class_test" TEST_MODE="SUITE_TEST">
+    <method v="2">
+      <option name="com.jetbrains.cidr.execution.CidrBuildBeforeRunTaskProvider$BuildBeforeRunTask" enabled="true" />
+      <option name="BeforeTestRunTask" enabled="true" />
+    </method>
+  </configuration>
+</component>

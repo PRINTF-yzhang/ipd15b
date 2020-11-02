@@ -1,0 +1,22 @@
+name: CI
+
+on: push
+
+jobs:
+
+  Tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+    - name: Fetch your code
+      uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Configure CMake
+      run: cmake -S . -B build -G 'Unix Makefiles'
+    - name: Build
+      run: cmake --build build -- -j$(nproc)
+    - name: Run tests
+      run: |
+        cd build
+        ctest --output-on-failure
