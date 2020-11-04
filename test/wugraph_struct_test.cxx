@@ -27,6 +27,7 @@ TEST_CASE("WU_graph::get_weight()")
     WU_graph g3(3);
     CHECK(g3.get_weight(0, 0) == NE);
     CHECK(g3.get_weight(2, 1) == NE);
+    CHECK(g3.get_weight(1, 2) == NE);
 }
 
 TEST_CASE("WU_graph::set_weight() and get_weight()")
@@ -39,6 +40,7 @@ TEST_CASE("WU_graph::set_weight() and get_weight()")
     CHECK(g3.get_weight(1, 1) == NE);
     CHECK(g3.get_weight(2, 2) == NE);
     CHECK(g3.get_weight(0, 1) == 15);
+    CHECK(g3.get_weight(1, 0) == 15);
     CHECK(g3.get_weight(0, 2) == NE);
     CHECK(g3.get_weight(1, 2) == NE);
 
@@ -50,6 +52,7 @@ TEST_CASE("WU_graph::set_weight() and get_weight()")
     CHECK(g3.get_weight(0, 1) == 15);
     CHECK(g3.get_weight(0, 2) == NE);
     CHECK(g3.get_weight(1, 2) == 1.25e-8);
+    CHECK(g3.get_weight(2, 1) == 1.25e-8);
 
     g3.set_weight(0, 0, 0);
 
@@ -68,6 +71,7 @@ TEST_CASE("WU_graph::set_weight() and get_weight()")
     CHECK(g3.get_weight(0, 1) == 15);
     CHECK(g3.get_weight(0, 2) == NE);
     CHECK(g3.get_weight(1, 2) == 3);
+    CHECK(g3.get_weight(2, 1) == 3);
 
     g3.set_weight(1, 2, NE);
 
@@ -77,19 +81,23 @@ TEST_CASE("WU_graph::set_weight() and get_weight()")
     CHECK(g3.get_weight(0, 1) == 15);
     CHECK(g3.get_weight(0, 2) == NE);
     CHECK(g3.get_weight(1, 2) == NE);
+    CHECK(g3.get_weight(2, 1) == NE);
 }
 
 TEST_CASE("WU_graph::has_edge() and remove_edge()")
 {
     WU_graph g3(3);
-
-    for (weight_t& w : g3.edge_weights) {
-        w = 1.0;
+    for(vertex_t u = 0; u < 3; ++u){
+        for(vertex_t v = 0; v <= u; ++v){
+            g3.set_weight(u,v,1.0);
+        }
     }
 
     CHECK(g3.has_edge(0, 0));
     CHECK(g3.has_edge(0, 1));
+    CHECK(g3.has_edge(1, 0));
     CHECK(g3.has_edge(1, 2));
+    CHECK(g3.has_edge(2, 1));
 
     g3.remove_edge(0, 0);
 
@@ -101,6 +109,7 @@ TEST_CASE("WU_graph::has_edge() and remove_edge()")
 
     CHECK(!g3.has_edge(0, 0));
     CHECK(!g3.has_edge(0, 1));
+    CHECK(!g3.has_edge(1, 0));
     CHECK(g3.has_edge(1, 2));
 }
 

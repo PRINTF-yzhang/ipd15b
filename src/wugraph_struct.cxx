@@ -12,6 +12,7 @@ WU_graph::WU_graph(size_t size)
 void WU_graph::set_weight(vertex_t u, vertex_t v, weight_t w)
 {
     edge_weights[index(u, v)] = w;
+    edge_weights[index(v, u)] = w;
 }
 
 void WU_graph::remove_edge(vertex_t u, vertex_t v)
@@ -53,3 +54,17 @@ std::size_t WU_graph::index(vertex_t u, vertex_t v) const
 {
     return n_vertices * u + v;
 }
+
+/*
+ * 15.b.2
+ * member access control
+ * pubic member are visible to the client code
+ * Class members declared as public can be used by any function.
+ *
+ * Class members declared as private can be used only by member functions and friends
+ * (classes or functions) of the class.
+ *
+ * The default access is private in a class, and public in a struct or union.
+ * make data members private so the client code can't access them directly
+ * don't give client code the access to the operations that might violates the invariant
+ */
